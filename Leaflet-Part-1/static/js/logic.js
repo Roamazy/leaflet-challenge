@@ -15,6 +15,7 @@ fetch('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojso
       let lat = coords[1];
       let depth = coords[2];
       let mag = earthquake.properties.mag;
+      let location = earthquake.properties.place
 
       let markerSize = mag * 5;
 
@@ -32,7 +33,8 @@ fetch('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojso
       } else {
         markerColor = '#d73027'; //red
       }
-
+      
+      //making circles
       let circleMarker = L.circleMarker([lat, lon], {
         radius: markerSize,
         fillColor: markerColor,
@@ -42,7 +44,7 @@ fetch('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojso
         fillOpacity: 0.8
       }).addTo(map);
 
-      circleMarker.bindPopup(`Magnitude: ${mag}<br>Depth: ${depth} km`);
+      circleMarker.bindPopup(`Location: ${location}<br>Magnitude: ${mag}<br>Depth: ${depth} km`);
     });
 
     //legend
